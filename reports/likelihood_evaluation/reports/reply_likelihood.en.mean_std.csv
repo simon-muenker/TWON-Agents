@@ -1,0 +1,36 @@
+,mean,std
+best_epoch,58.0,30.649
+metrics.train.Ignored.precision,0.982,0.004
+metrics.train.Ignored.recall,0.981,0.005
+metrics.train.Ignored.f1-score,0.982,0.004
+metrics.train.Ignored.support,99483.5,3.697
+metrics.train.Replied.precision,0.981,0.005
+metrics.train.Replied.recall,0.982,0.004
+metrics.train.Replied.f1-score,0.982,0.004
+metrics.train.Replied.support,99486.0,3.162
+metrics.train.accuracy,0.982,0.004
+metrics.train.macro avg.precision,0.982,0.004
+metrics.train.macro avg.recall,0.982,0.004
+metrics.train.macro avg.f1-score,0.982,0.004
+metrics.train.macro avg.support,198969.5,6.028
+metrics.train.weighted avg.precision,0.982,0.004
+metrics.train.weighted avg.recall,0.982,0.004
+metrics.train.weighted avg.f1-score,0.982,0.004
+metrics.train.weighted avg.support,198969.5,6.028
+metrics.test.Ignored.precision,0.974,0.009
+metrics.test.Ignored.recall,0.976,0.006
+metrics.test.Ignored.f1-score,0.975,0.007
+metrics.test.Ignored.support,500.0,0.0
+metrics.test.Replied.precision,0.975,0.006
+metrics.test.Replied.recall,0.974,0.01
+metrics.test.Replied.f1-score,0.974,0.007
+metrics.test.Replied.support,500.0,0.0
+metrics.test.accuracy,0.974,0.007
+metrics.test.macro avg.precision,0.975,0.007
+metrics.test.macro avg.recall,0.974,0.007
+metrics.test.macro avg.f1-score,0.974,0.007
+metrics.test.macro avg.support,1000.0,0.0
+metrics.test.weighted avg.precision,0.975,0.007
+metrics.test.weighted avg.recall,0.974,0.007
+metrics.test.weighted avg.f1-score,0.974,0.007
+metrics.test.weighted avg.support,1000.0,0.0
