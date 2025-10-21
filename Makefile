@@ -10,8 +10,8 @@ debug:
 train:
 	${ENV} ./pipeline/train/de/task_post.py --device ${DEVICE}
 	${ENV} ./pipeline/train/de/task_reply.py --device ${DEVICE}
-	${ENV} ./pipeline/train/en/task_post.py --device ${DEVICE}
-	${ENV} ./pipeline/train/en/task_reply.py --device ${DEVICE}
+#	${ENV} ./pipeline/train/en/task_post.py --device ${DEVICE}
+#	${ENV} ./pipeline/train/en/task_reply.py --device ${DEVICE}
 
 eval:
 	${ENV} ./pipeline/train/de/task_post.py --no-train --device ${DEVICE}
@@ -29,3 +29,6 @@ eval_2:
 
 openTensorBoard:
 	tensorboard --logdir models/decision/ --bind_all
+
+dev_api:
+	@poetry run fastapi dev api/app.py --port 8453

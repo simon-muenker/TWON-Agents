@@ -12,7 +12,8 @@ twon_agents.align_content_generation.Pipeline(
     do_train=args.train,
     do_eval=args.eval,
     dataset=dict(
-        path="data/processed/twitter.german.dataset.enriched.csv",
+        train_path="data/processed/twitter.german.dataset.enriched.train.csv",
+        eval_path="data/processed/twitter.german.dataset.enriched.eval.csv",
     ),
     models=dict(
         base="meta-llama/Llama-3.2-3B-Instruct",

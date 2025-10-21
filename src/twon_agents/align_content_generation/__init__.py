@@ -19,9 +19,11 @@ from twon_agents.align_content_generation import util
 
 class Pipeline(pydantic.BaseModel):
     class Dataset(pydantic.BaseModel):
-        path: str
-        eval_frac: float = 0.05
-        max_samples: int = 50_000
+        train_path: str
+        eval_path: str
+
+        max_samples_train: int = 50_000
+        max_samples_eval: int = 10_000
 
     class Models(pydantic.BaseModel):
         base: str
@@ -95,13 +97,8 @@ class Pipeline(pydantic.BaseModel):
         return super().model_post_init(__context)
 
     def __call__(self):
-        dataset: typing.List[typing.Dict] = (
-            random.sample(data, self.dataset.max_samples)
-            if len(data := self.get_formatted_dataset()) > self.dataset.max_samples
-            else data
-        )
-
-        train_set, eval_set = self.get_data_splits(dataset)
+        train_set = self.get_formatted_dataset(self.dataset.train_path, self.dataset.max_samples_train)
+        eval_set = self.get_formatted_dataset(self.dataset.eval_path, self.dataset.max_samples_eval)
 
         # ========================================
         # Train, Evaluate, Push
@@ -165,20 +162,11 @@ class Pipeline(pydantic.BaseModel):
             )
             rich.print(results)
 
-    # ========================================
-    # Utility Methods
-    # ========================================
-
-    def get_formatted_dataset(self) -> typing.List[typing.Dict]:
-        return self._data_format_fn[self.task](self._root_path / self.dataset.path)
-
-    def get_data_splits(
-        self, dataset: typing.List
-    ) -> typing.Tuple[typing.List, typing.List]:
+    def get_formatted_dataset(self, dataset_path, max_sample_size) -> typing.List[typing.Dict]:
         return (
-            dataset[: int(len(dataset) * (1 - self.dataset.eval_frac))],
-            dataset[-int(len(dataset) * self.dataset.eval_frac) :],
+            random.sample(data, max_sample_size)
+            if len(data := self._data_format_fn[self.task](self._root_path / dataset_path)) > max_sample_size
+            else data
         )
-
 
 __all__ = ["Pipeline", "util"]
